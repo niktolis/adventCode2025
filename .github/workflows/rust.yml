@@ -8,15 +8,23 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
+  AOC_SESSION: ${{ secrets.AOC_SESSION }}
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    
+    strategy:
+      matrix:
+        day: [day1, day2, day3, day4]
+    
     steps:
     - uses: actions/checkout@v4
-    - name: Build
+    
+    - name: Build ${{ matrix.day }}
+      working-directory: ./${{ matrix.day }}
       run: cargo build --verbose
-    - name: Run tests
+    
+    - name: Run tests for ${{ matrix.day }}
+      working-directory: ./${{ matrix.day }}
       run: cargo test --verbose
