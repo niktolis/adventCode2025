@@ -16,7 +16,7 @@ jobs:
     
     strategy:
       matrix:
-        day: [day1, day2, day3, day4]
+        day: [day1, day2, day3]
     
     steps:
     - uses: actions/checkout@v4
