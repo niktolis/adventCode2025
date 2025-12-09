@@ -91,3 +91,12 @@ jobs:
     - name: Run tests for ${{ matrix.day }}
       working-directory: ./${{ matrix.day }}
       run: cargo test --verbose
+    
+    - name: Run ${{ matrix.day }} (default mode)
+      working-directory: ./${{ matrix.day }}
+      run: cargo run --verbose
+    
+    - name: Run ${{ matrix.day }} (with arguments if applicable)
+      working-directory: ./${{ matrix.day }}
+      run: cargo run --verbose -- atleast
+      continue-on-error: true
