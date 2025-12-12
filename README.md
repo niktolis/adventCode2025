@@ -11,6 +11,7 @@ Each day is implemented as a separate Rust project:
 - `day1/` - Day 1: Dial rotation simulator with zero-crossing detection
 - `day2/` - Day 2: Invalid ID pattern detector with multiple validation modes
 - `day3/` - Day 3: Maximum k-digit ordered number selector using greedy algorithm
+- `day4/` - Day 4: Grid-based roll removal with single/multi-pass neighbor detection
 
 ## Prerequisites
 
@@ -19,7 +20,7 @@ Each day is implemented as a separate Rust project:
 
 ## Setup
 
-1. Set your AOC session cookie as an environment variable:
+Set your AOC session cookie as an environment variable:
 
 ```bash
 export AOC_SESSION="your-session-cookie-here"
@@ -31,7 +32,7 @@ To get your session cookie:
 - Open DevTools → Application → Cookies → <https://adventofcode.com>
 - Copy the value of the `session` cookie
 
-1. Build and run a specific day:
+Then build and run a specific day:
 
 ```bash
 cd day1
@@ -74,12 +75,30 @@ cd day3
 cargo run
 ```
 
+### Day 4
+
+Day 4 supports two modes:
+
+**Single pass mode** (default):
+
+```bash
+cd day4
+cargo run
+```
+
+**Multi-pass mode**:
+
+```bash
+cd day4
+cargo run -- multi
+```
+
 ## Running Tests
 
 Run tests for all days:
 
 ```bash
-for day in day1 day2 day3; do
+for day in day1 day2 day3 day4; do
   cd $day
   cargo test
   cd ..
@@ -92,6 +111,15 @@ Or for a specific day:
 cd day1
 cargo test
 ```
+
+## CI/CD
+
+The project uses GitHub Actions to automatically:
+
+- Cache dependencies for faster builds
+- Build all days in parallel
+- Run all tests
+- Execute each day's main function with various modes
 
 ## License
 
