@@ -6,14 +6,16 @@ Solutions for [Advent of Code 2025](https://adventofcode.com/2025) written in Ru
 
 ## Structure
 
-Each day is implemented as a separate Rust project:
+Each day is implemented as a separate Rust project with its own README:
 
-- `day1/` - Day 1: Dial rotation simulator with zero-crossing detection
-- `day2/` - Day 2: Invalid ID pattern detector with multiple validation modes
-- `day3/` - Day 3: Maximum k-digit ordered number selector using greedy algorithm
-- `day4/` - Day 4: Grid-based roll removal with single/multi-pass neighbor detection
-- `day5/` - Day 5: Interval merging and membership testing with binary search
-- `day6/` - Day 6: Grid number processing with horizontal and vertical/block-based parsing
+- [day1/](day1/) - Dial rotation simulator with zero-crossing detection
+- [day2/](day2/) - Invalid ID pattern detector with multiple validation modes
+- [day3/](day3/) - Maximum k-digit ordered number selector using greedy algorithm
+- [day4/](day4/) - Grid-based roll removal with single/multi-pass neighbor detection
+- [day5/](day5/) - Interval merging and membership testing with binary search
+- [day6/](day6/) - Grid number processing with horizontal and vertical/block-based parsing
+
+See each day's README for specific usage instructions and details.
 
 ## Prerequisites
 
@@ -29,95 +31,16 @@ export AOC_SESSION="your-session-cookie-here"
 ```
 
 To get your session cookie:
+1. Log in to [adventofcode.com](https://adventofcode.com)
+2. Open DevTools → Application → Cookies → <https://adventofcode.com>
+3. Copy the value of the `session` cookie
 
-- Log in to [adventofcode.com](https://adventofcode.com)
-- Open DevTools → Application → Cookies → <https://adventofcode.com>
-- Copy the value of the `session` cookie
-
-Then build and run a specific day:
+## Quick Start
 
 ```bash
 cd day1
-cargo build
 cargo run
 cargo test
-```
-
-## Running Individual Days
-
-### Day 1
-
-```bash
-cd day1
-cargo run
-```
-
-### Day 2
-
-Day 2 supports two modes:
-
-**Exact Double mode** (default):
-
-```bash
-cd day2
-cargo run
-```
-
-**At Least Double mode**:
-
-```bash
-cd day2
-cargo run -- atleast
-```
-
-### Day 3
-
-```bash
-cd day3
-cargo run
-```
-
-### Day 4
-
-Day 4 supports two modes:
-
-**Single pass mode** (default):
-
-```bash
-cd day4
-cargo run
-```
-
-**Multi-pass mode**:
-
-```bash
-cd day4
-cargo run -- multi
-```
-
-### Day 5
-
-```bash
-cd day5
-cargo run
-```
-
-### Day 6
-
-Day 6 supports two parts with different input parsing:
-
-**Part 1** (horizontal whitespace-separated columns):
-
-```bash
-cd day6
-cargo run
-```
-
-**Part 2** (vertical block-based parsing):
-
-```bash
-cd day6
-cargo run -- part2
 ```
 
 ## Running Tests
@@ -125,18 +48,9 @@ cargo run -- part2
 Run tests for all days:
 
 ```bash
-for day in day1 day2 day3 day4 day5 day6; do
-  cd $day
-  cargo test
-  cd ..
+for day in day{1..6}; do
+  cd $day && cargo test && cd ..
 done
-```
-
-Or for a specific day:
-
-```bash
-cd day1
-cargo test
 ```
 
 ## CI/CD
