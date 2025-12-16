@@ -13,6 +13,7 @@ Each day is implemented as a separate Rust project:
 - `day3/` - Day 3: Maximum k-digit ordered number selector using greedy algorithm
 - `day4/` - Day 4: Grid-based roll removal with single/multi-pass neighbor detection
 - `day5/` - Day 5: Interval merging and membership testing with binary search
+- `day6/` - Day 6: Grid number processing with horizontal and vertical/block-based parsing
 
 ## Prerequisites
 
@@ -101,12 +102,30 @@ cd day5
 cargo run
 ```
 
+### Day 6
+
+Day 6 supports two parts with different input parsing:
+
+**Part 1** (horizontal whitespace-separated columns):
+
+```bash
+cd day6
+cargo run
+```
+
+**Part 2** (vertical block-based parsing):
+
+```bash
+cd day6
+cargo run -- part2
+```
+
 ## Running Tests
 
 Run tests for all days:
 
 ```bash
-for day in day1 day2 day3 day4 day5; do
+for day in day1 day2 day3 day4 day5 day6; do
   cd $day
   cargo test
   cd ..
