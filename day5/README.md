@@ -5,6 +5,7 @@ Merges overlapping intervals and performs efficient membership testing using bin
 ## Problem Description
 
 Given a list of intervals and test numbers:
+
 1. Merges overlapping or adjacent intervals
 2. Tests which numbers fall within the merged intervals
 3. Counts total members across all intervals

@@ -23,6 +23,7 @@ cargo test
 ## Algorithm
 
 Employs a greedy approach:
+
 1. Maintain a monotonic decreasing stack
 2. For each digit, pop smaller digits if there are enough remaining digits
 3. Keep exactly k digits that form the maximum value

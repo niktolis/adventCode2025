@@ -5,10 +5,12 @@ Processes grid-based numeric data with two different parsing strategies.
 ## Problem Description
 
 Implements two parsing modes:
+
 - **Part 1**: Horizontal whitespace-separated column parsing
 - **Part 2**: Vertical block-based parsing with all-space column separators
 
 Each mode:
+
 1. Separates numbers into columns/blocks
 2. Applies operators (`+` or `*`) to operands
 3. Sums results across all operations

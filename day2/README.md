@@ -5,6 +5,7 @@ Detects invalid IDs based on repeating digit patterns with two validation modes.
 ## Problem Description
 
 Identifies invalid IDs by checking for repeating patterns in digit sequences:
+
 - **Exact Double mode**: Pattern appears exactly twice consecutively
 - **At Least Double mode**: Pattern appears two or more times consecutively
 

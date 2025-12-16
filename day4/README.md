@@ -5,6 +5,7 @@ Removes rolls from a grid based on 8-directional neighbor detection with single 
 ## Problem Description
 
 Processes a grid to remove rolls ('o') that have 4 or more neighboring rolls:
+
 - **Single pass mode**: Removes all qualifying rolls simultaneously
 - **Multi-pass mode**: Uses cascading BFS where removals can trigger subsequent removals
 
@@ -29,6 +30,7 @@ cargo test
 ```
 
 Includes 14 comprehensive tests covering:
+
 - Stable configurations
 - Cascading removals
 - Edge cases and boundary conditions

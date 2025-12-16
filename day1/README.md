@@ -5,6 +5,7 @@ Simulates a circular dial (0-99) with zero-crossing detection.
 ## Problem Description
 
 Starting at position 50 on a circular dial (0-99), process rotation instructions:
+
 - Lines starting with 'R': rotate right
 - Lines starting with 'L': rotate left
 - Track how many times the dial crosses position 0

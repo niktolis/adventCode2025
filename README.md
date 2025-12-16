@@ -31,6 +31,7 @@ export AOC_SESSION="your-session-cookie-here"
 ```
 
 To get your session cookie:
+
 1. Log in to [adventofcode.com](https://adventofcode.com)
 2. Open DevTools → Application → Cookies → <https://adventofcode.com>
 3. Copy the value of the `session` cookie
