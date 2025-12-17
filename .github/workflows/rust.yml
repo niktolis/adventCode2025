@@ -16,11 +16,14 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Install lld
+      run: sudo apt-get update && sudo apt-get install -y lld
+
     - name: Set up Bazelisk
       uses: bazelbuild/setup-bazelisk@v3
 
     - name: Bazel build all
-      run: bazelisk build //...
+      run: bazelisk build //... --@rules_rust//:rustc_flags=-Clink-arg=-fuse-ld=lld
 
     - name: Bazel test all (includes smoke runs)
-      run: bazelisk test //...
+      run: bazelisk test //... --@rules_rust//:rustc_flags=-Clink-arg=-fuse-ld=lld
