@@ -23,7 +23,11 @@ jobs:
       uses: bazelbuild/setup-bazelisk@v3
 
     - name: Bazel build all
-      run: bazelisk build //... --@rules_rust//:rustc_flags=-Clink-arg=-fuse-ld=lld
+      run: bazelisk build //...
+      env:
+        RUSTFLAGS: -Clink-arg=-fuse-ld=lld
 
     - name: Bazel test all (includes smoke runs)
-      run: bazelisk test //... --@rules_rust//:rustc_flags=-Clink-arg=-fuse-ld=lld
+      run: bazelisk test //...
+      env:
+        RUSTFLAGS: -Clink-arg=-fuse-ld=lld
