@@ -7,96 +7,20 @@ on:
     branches: [ "main" ]
 
 env:
-  CARGO_TERM_COLOR: always
   AOC_SESSION: ${{ secrets.AOC_SESSION }}
-  DAYS: "day1 day2 day3 day4 day5 day6"
 
 jobs:
-  # First job: cache dependencies once
-  cache-deps:
+  build-and-test:
     runs-on: ubuntu-latest
-    outputs:
-      days-matrix: ${{ steps.set-matrix.outputs.days }}
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set matrix output
-      id: set-matrix
-      run: echo "days=$(echo $DAYS | jq -R -c 'split(" ")')" >> $GITHUB_OUTPUT
-    
-    - name: Cache cargo registry
-      uses: actions/cache@v4
-      with:
-        path: ~/.cargo/registry
-        key: ${{ runner.os }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-cargo-registry-
-    
-    - name: Cache cargo index
-      uses: actions/cache@v4
-      with:
-        path: ~/.cargo/git
-        key: ${{ runner.os }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-cargo-index-
-    
-    - name: Download dependencies
-      run: |
-        for day in $DAYS; do
-          cd $day
-          cargo fetch
-          cd ..
-        done
 
-  # Second job: build and test all days in parallel
-  build:
-    needs: cache-deps
-    runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        day: ${{ fromJson(needs.cache-deps.outputs.days-matrix) }}
-    
     steps:
     - uses: actions/checkout@v4
-    
-    - name: Restore cargo registry cache
-      uses: actions/cache@v4
-      with:
-        path: ~/.cargo/registry
-        key: ${{ runner.os }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-cargo-registry-
-    
-    - name: Restore cargo index cache
-      uses: actions/cache@v4
-      with:
-        path: ~/.cargo/git
-        key: ${{ runner.os }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-cargo-index-
-    
-    - name: Cache target for ${{ matrix.day }}
-      uses: actions/cache@v4
-      with:
-        path: ${{ matrix.day }}/target
-        key: ${{ runner.os }}-target-${{ matrix.day }}-${{ hashFiles(format('{0}/Cargo.lock', matrix.day)) }}
-        restore-keys: |
-          ${{ runner.os }}-target-${{ matrix.day }}-
-    
-    - name: Build ${{ matrix.day }}
-      working-directory: ./${{ matrix.day }}
-      run: cargo build --verbose
-    
-    - name: Run tests for ${{ matrix.day }}
-      working-directory: ./${{ matrix.day }}
-      run: cargo test --verbose
-    
-    - name: Run ${{ matrix.day }} (default mode)
-      working-directory: ./${{ matrix.day }}
-      run: cargo run --verbose
-    
-    - name: Run ${{ matrix.day }} (with arguments if applicable)
-      working-directory: ./${{ matrix.day }}
-      run: cargo run --verbose -- atleast
-      continue-on-error: true
+
+    - name: Set up Bazelisk
+      uses: bazelbuild/setup-bazelisk@v2
+
+    - name: Bazel build all
+      run: bazelisk build //...
+
+    - name: Bazel test all (includes smoke runs)
+      run: bazelisk test //...

@@ -20,6 +20,7 @@ See each day's README for specific usage instructions and details.
 ## Prerequisites
 
 - Rust (latest stable version)
+- Bazelisk (recommended) or Bazel 6+
 - Advent of Code session cookie
 
 ## Setup
@@ -36,32 +37,22 @@ To get your session cookie:
 2. Open DevTools → Application → Cookies → <https://adventofcode.com>
 3. Copy the value of the `session` cookie
 
-## Quick Start
+## Quick Start (Bazel)
 
 ```bash
-cd day1
-cargo run
-cargo test
-```
+# Build everything
+bazelisk build //...
 
-## Running Tests
+# Test everything
+bazelisk test //...
 
-Run tests for all days:
-
-```bash
-for day in day{1..6}; do
-  cd $day && cargo test && cd ..
-done
+# Run a specific day (example: day2 with "atleast" arg)
+bazelisk run //day2:day2 -- atleast
 ```
 
 ## CI/CD
 
-The project uses GitHub Actions to automatically:
-
-- Cache dependencies for faster builds
-- Build all days in parallel
-- Run all tests
-- Execute each day's main function with various modes
+GitHub Actions runs `bazelisk build //...` and `bazelisk test //...`; the tests include smoke runs for each day/mode (default plus `day2 -- atleast`, `day4 -- multi`, `day6 -- part2`). See `.github/workflows/rust.yml`.
 
 ## License
 

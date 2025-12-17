@@ -13,13 +13,22 @@ Starting at position 50 on a circular dial (0-99), process rotation instructions
 ## Usage
 
 ```bash
-cargo run
+ # Bazel
+ bazelisk run //day1:day1
+
+ # Cargo (optional)
+ cargo run
 ```
 
 ## Testing
 
 ```bash
 cargo test
+ # Bazel
+ bazelisk test //day1:day1_test
+ 
+ # Cargo (optional)
+ cargo test
 ```
 
 ## Requirements

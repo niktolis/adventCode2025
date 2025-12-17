@@ -1,0 +1,6 @@
+# Global Bazel settings
+# Show individual Rust tests
+test --test_output=all
+# Keep verbose timeout warnings (previously used)
+test --test_verbose_timeout_warnings
+test --test_env=AOC_SESSION

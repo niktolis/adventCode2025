@@ -5,3 +5,4 @@ edition = "2024"
 
 [dependencies]
 ureq = "3.1.4"
+httparse = { version = "1.10.1", features = ["std"] }

@@ -14,13 +14,21 @@ Identifies invalid IDs by checking for repeating patterns in digit sequences:
 **Exact Double mode** (default):
 
 ```bash
-cargo run
+ # Bazel
+ bazelisk run //day2:day2
+
+ # Cargo (optional)
+ cargo run
 ```
 
 **At Least Double mode**:
 
 ```bash
-cargo run -- atleast
+ # Bazel
+ bazelisk run //day2:day2 -- atleast
+
+ # Cargo (optional)
+ cargo run -- atleast
 ```
 
 Alternative mode syntax: `at-least` or `at_least`
@@ -28,7 +36,11 @@ Alternative mode syntax: `at-least` or `at_least`
 ## Testing
 
 ```bash
-cargo test
+ # Bazel
+ bazelisk test //day2:day2_test
+
+ # Cargo (optional)
+ cargo test
 ```
 
 ## Requirements

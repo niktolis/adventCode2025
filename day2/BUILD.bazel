@@ -1,0 +1,38 @@
+load("@rules_rust//rust:defs.bzl", "rust_binary", "rust_test")
+
+rust_binary(
+    name = "day2",
+    srcs = ["src/main.rs"],
+    edition = "2024",
+    deps = ["@day2_crates//:ureq"],
+)
+
+rust_test(
+    name = "day2_test",
+    srcs = ["src/main.rs"],
+    edition = "2024",
+    size = "small",
+    timeout = "short",
+    deps = ["@day2_crates//:ureq"],
+)
+
+sh_binary(
+    name = "day2_atleast",
+    srcs = ["//tools:run_with_args.sh"],
+    data = [":day2"],
+    args = ["$(location :day2)", "atleast"],
+)
+
+sh_test(
+    name = "day2_run_default",
+    srcs = ["//tools:run_with_args.sh"],
+    data = [":day2"],
+    args = ["$(location :day2)"],
+)
+
+sh_test(
+    name = "day2_run_atleast",
+    srcs = ["//tools:run_with_args.sh"],
+    data = [":day2"],
+    args = ["$(location :day2)", "atleast"],
+)

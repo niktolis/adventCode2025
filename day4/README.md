@@ -14,19 +14,31 @@ Processes a grid to remove rolls ('o') that have 4 or more neighboring rolls:
 **Single pass mode** (default):
 
 ```bash
-cargo run
+ # Bazel
+ bazelisk run //day4:day4
+
+ # Cargo (optional)
+ cargo run
 ```
 
 **Multi-pass mode**:
 
 ```bash
-cargo run -- multi
+ # Bazel
+ bazelisk run //day4:day4 -- multi
+
+ # Cargo (optional)
+ cargo run -- multi
 ```
 
 ## Testing
 
 ```bash
-cargo test
+ # Bazel
+ bazelisk test //day4:day4_test
+
+ # Cargo (optional)
+ cargo test
 ```
 
 Includes 14 comprehensive tests covering:

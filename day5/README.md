@@ -13,13 +13,21 @@ Given a list of intervals and test numbers:
 ## Usage
 
 ```bash
-cargo run
+ # Bazel
+ bazelisk run //day5:day5
+
+ # Cargo (optional)
+ cargo run
 ```
 
 ## Testing
 
 ```bash
-cargo test
+ # Bazel
+ bazelisk test //day5:day5_test
+
+ # Cargo (optional)
+ cargo test
 ```
 
 ## Algorithm

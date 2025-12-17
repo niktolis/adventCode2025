@@ -1,0 +1,24 @@
+load("@rules_rust//rust:defs.bzl", "rust_binary", "rust_test")
+
+rust_binary(
+    name = "day5",
+    srcs = ["src/main.rs"],
+    edition = "2024",
+    deps = ["@day5_crates//:ureq"],
+)
+
+rust_test(
+    name = "day5_test",
+    srcs = ["src/main.rs"],
+    edition = "2024",
+    size = "small",
+    timeout = "short",
+    deps = ["@day5_crates//:ureq"],
+)
+
+sh_test(
+    name = "day5_run",
+    srcs = ["//tools:run_with_args.sh"],
+    data = [":day5"],
+    args = ["$(location :day5)"],
+)

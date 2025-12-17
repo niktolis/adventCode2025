@@ -1,0 +1,35 @@
+"""Advent of Code 2025 solutions in Rust."""
+
+module(name = "adventcode2025", version = "0.1.0")
+
+bazel_dep(name = "rules_rust", version = "0.68.1")
+
+# Register a stable Rust toolchain via bzlmod.
+rust = use_extension("@rules_rust//rust:extensions.bzl", "rust")
+rust.toolchain(
+    edition = "2024",
+    versions = ["1.91.0"],
+)
+use_repo(rust, "rust_toolchains")
+register_toolchains("@rust_toolchains//:all")
+
+# Import third-party crates for all days via crate_universe.
+crate = use_extension("@rules_rust//crate_universe:extensions.bzl", "crate")
+
+# Add new days by extending this list; each must have its own Cargo.toml/lock.
+DAYS = ["day1", "day2", "day3", "day4", "day5", "day6"]
+
+[
+    crate.from_cargo(
+        name = "%s_crates" % day,
+        cargo_lockfile = "//%s:Cargo.lock" % day,
+        manifests = ["//%s:Cargo.toml" % day],
+    )
+    for day in DAYS
+]
+
+[
+    use_repo(crate, "%s_crates" % day)
+    for day in DAYS
+]
+

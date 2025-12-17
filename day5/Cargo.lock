@@ -49,6 +49,7 @@ dependencies = [
 name = "day5"
 version = "0.1.0"
 dependencies = [
+ "httparse",
  "ureq",
 ]
 

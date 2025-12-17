@@ -11,13 +11,21 @@ Default configuration: k=12 digits
 ## Usage
 
 ```bash
-cargo run
+ # Bazel
+ bazelisk run //day3:day3
+
+ # Cargo (optional)
+ cargo run
 ```
 
 ## Testing
 
 ```bash
-cargo test
+ # Bazel
+ bazelisk test //day3:day3_test
+
+ # Cargo (optional)
+ cargo test
 ```
 
 ## Algorithm

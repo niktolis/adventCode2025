@@ -1,0 +1,38 @@
+load("@rules_rust//rust:defs.bzl", "rust_binary", "rust_test")
+
+rust_binary(
+    name = "day4",
+    srcs = ["src/main.rs"],
+    edition = "2024",
+    deps = ["@day4_crates//:ureq"],
+)
+
+rust_test(
+    name = "day4_test",
+    srcs = ["src/main.rs"],
+    edition = "2024",
+    size = "small",
+    timeout = "short",
+    deps = ["@day4_crates//:ureq"],
+)
+
+sh_binary(
+    name = "day4_multi",
+    srcs = ["//tools:run_with_args.sh"],
+    data = [":day4"],
+    args = ["$(location :day4)", "multi"],
+)
+
+sh_test(
+    name = "day4_run_default",
+    srcs = ["//tools:run_with_args.sh"],
+    data = [":day4"],
+    args = ["$(location :day4)"],
+)
+
+sh_test(
+    name = "day4_run_multi",
+    srcs = ["//tools:run_with_args.sh"],
+    data = [":day4"],
+    args = ["$(location :day4)", "multi"],
+)

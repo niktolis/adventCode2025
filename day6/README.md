@@ -20,19 +20,31 @@ Each mode:
 **Part 1** (horizontal parsing):
 
 ```bash
-cargo run
+ # Bazel
+ bazelisk run //day6:day6
+
+ # Cargo (optional)
+ cargo run
 ```
 
 **Part 2** (vertical/block-based parsing):
 
 ```bash
-cargo run -- part2
+ # Bazel
+ bazelisk run //day6:day6 -- part2
+
+ # Cargo (optional)
+ cargo run -- part2
 ```
 
 ## Testing
 
 ```bash
-cargo test
+ # Bazel
+ bazelisk test //day6:day6_test
+
+ # Cargo (optional)
+ cargo test
 ```
 
 Tests validate both parsing modes with proper input formatting.
