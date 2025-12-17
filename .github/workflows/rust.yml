@@ -16,6 +16,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Mount Bazel cache
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/bazel
+        key: bazel-${{ hashFiles('**/MODULE.bazel', '**/Cargo.lock') }}
+        restore-keys: bazel-
+
     - name: Install lld
       run: sudo apt-get update && sudo apt-get install -y lld
 
