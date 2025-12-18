@@ -1,0 +1,50 @@
+load("@rules_rust//rust:defs.bzl", "rust_binary", "rust_test")
+
+rust_binary(
+    name = "day7",
+    srcs = ["src/main.rs"],
+    edition = "2024",
+    deps = [
+        "@day7_crates//:ureq",
+        "@day7_crates//:httparse",
+        "@day7_crates//:anyhow",
+        "@day7_crates//:num-bigint",
+        "@day7_crates//:num-traits",
+    ],
+)
+
+rust_test(
+    name = "day7_test",
+    srcs = ["src/main.rs"],
+    edition = "2024",
+    size = "small",
+    timeout = "short",
+    deps = [
+        "@day7_crates//:ureq",
+        "@day7_crates//:httparse",
+        "@day7_crates//:anyhow",
+        "@day7_crates//:num-bigint",
+        "@day7_crates//:num-traits",
+    ],
+)
+
+sh_test(
+    name = "day7_run_default",
+    srcs = ["//tools:run_with_args.sh"],
+    data = [":day7"],
+    args = ["$(location :day7)"],
+)
+
+sh_binary(
+    name = "day7_part1",
+    srcs = ["//tools:run_with_args.sh"],
+    data = [":day7"],
+    args = ["$(location :day7)", "part1"],
+)
+
+sh_test(
+    name = "day7_run_part1",
+    srcs = ["//tools:run_with_args.sh"],
+    data = [":day7"],
+    args = ["$(location :day7)", "part1"],
+)

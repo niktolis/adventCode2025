@@ -4,7 +4,10 @@ rust_binary(
     name = "day3",
     srcs = ["src/main.rs"],
     edition = "2024",
-    deps = ["@day3_crates//:ureq"],
+    deps = [
+        "@day3_crates//:ureq",
+        "@day3_crates//:httparse",
+    ],
 )
 
 rust_test(
@@ -13,7 +16,10 @@ rust_test(
     edition = "2024",
     size = "small",
     timeout = "short",
-    deps = ["@day3_crates//:ureq"],
+    deps = [
+        "@day3_crates//:ureq",
+        "@day3_crates//:httparse",
+    ],
 )
 
 sh_test(
