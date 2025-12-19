@@ -14,6 +14,7 @@ Each day is implemented as a separate Rust project with its own README:
 - [day4/](day4/) - Grid-based roll removal with single/multi-pass neighbor detection
 - [day5/](day5/) - Interval merging and membership testing with binary search
 - [day6/](day6/) - Grid number processing with horizontal and vertical/block-based parsing
+- [day7/](day7/) - Timeline grid traversal with bitset operations and BigInt arithmetic
 
 See each day's README for specific usage instructions and details.
 
@@ -52,7 +53,15 @@ bazelisk run //day2:day2 -- atleast
 
 ## CI/CD
 
-GitHub Actions runs `bazelisk build //...` and `bazelisk test //...`; the tests include smoke runs for each day/mode (default plus `day2 -- atleast`, `day4 -- multi`, `day6 -- part2`). See `.github/workflows/rust.yml`.
+GitHub Actions runs `bazelisk build //...` and `bazelisk test //...` with lld linker and Bazel caching for efficiency. Tests include smoke runs for each day/mode:
+
+- **Days 1, 3, 5**: Default mode only
+- **Day 2**: Default + "atleast" mode
+- **Day 4**: Default + "multi" mode  
+- **Day 6**: Default + "part2" mode
+- **Day 7**: Default + "part2" mode
+
+See [.github/workflows/rust.yml](.github/workflows/rust.yml) for details.
 
 ## License
 
