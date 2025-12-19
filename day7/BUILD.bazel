@@ -48,3 +48,17 @@ sh_test(
     data = [":day7"],
     args = ["$(location :day7)", "part1"],
 )
+
+sh_binary(
+    name = "day7_part2",
+    srcs = ["//tools:run_with_args.sh"],
+    data = [":day7"],
+    args = ["$(location :day7)", "part2"],
+)
+
+sh_test(
+    name = "day7_run_part2",
+    srcs = ["//tools:run_with_args.sh"],
+    data = [":day7"],
+    args = ["$(location :day7)", "part2"],
+)

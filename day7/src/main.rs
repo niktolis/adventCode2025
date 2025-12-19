@@ -471,4 +471,64 @@ mod tests {
         assert_eq!(ans, 21);
         Ok(())
     }
+
+    // -------------------------
+    // Part 2: unit + regression
+    // -------------------------
+
+    #[test]
+    fn part2_tiny_no_splits() -> Result<()> {
+        // r0: S at col 2
+        // r1: no ^ => no splits
+        // r2: no ^ => no splits
+        let input = "\
+..S..
+.....
+.....
+";
+        let (g, s) = grid_and_start(input)?;
+        let ans = process_part2_int(&g, s);
+        assert_eq!(ans, BigUint::from(1u32));
+        Ok(())
+    }
+
+    #[test]
+    fn part2_single_split() -> Result<()> {
+        // r0: S at col 2
+        // r1: ^ at col 2 => split 1 into 2
+        let input = "\
+..S..
+..^..
+.....
+";
+        let (g, s) = grid_and_start(input)?;
+        let ans = process_part2_int(&g, s);
+        assert_eq!(ans, BigUint::from(2u32));
+        Ok(())
+    }
+
+    #[test]
+    fn part2_example_from_prompt() -> Result<()> {
+        let input = "\
+.......S.......
+...............
+.......^.......
+...............
+......^.^......
+...............
+.....^.^.^.....
+...............
+....^.^...^....
+...............
+...^.^...^.^...
+...............
+..^...^.....^..
+...............
+.^.^.^.^.^...^.
+...............
+";
+        let ans = process_part2(input)?;
+        assert_eq!(ans, BigUint::from(40u32));
+        Ok(())
+    }
 }
